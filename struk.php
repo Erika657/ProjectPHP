@@ -1,5 +1,4 @@
 <?php
-// ✅ Commit 8 – Struk Belanja (Versi Kertas Putih)
 session_start();
 if (!isset($_SESSION["username"])) {
     header("Location: index.php");
@@ -22,6 +21,16 @@ foreach ($kode_barang as $i => $kode) {
     $total[$i] = $jumlah[$i] * $harga_barang[$i];
     $grandtotal += $total[$i];
 }
+if ($grandtotal < 50000) {
+    $diskon_persen = 5;
+} elseif ($grandtotal <= 100000) {
+    $diskon_persen = 10;
+} else {
+    $diskon_persen = 15;
+}
+
+$diskon = $grandtotal * ($diskon_persen / 100);
+$total_bayar = $grandtotal - $diskon;
 ?>
 
 <!DOCTYPE html>
@@ -195,6 +204,15 @@ foreach ($kode_barang as $i => $kode) {
         <td colspan="2">Total Belanja</td>
         <td>Rp <?= number_format($grandtotal, 0, ',', '.') ?></td>
       </tr>
+      <tr>
+  <td colspan="2">Diskon (<?= $diskon_persen ?>%)</td>
+  <td>- Rp <?= number_format($diskon, 0, ',', '.') ?></td>
+</tr>
+
+<tr class="total">
+  <td colspan="2">Total Bayar</td>
+  <td>Rp <?= number_format($total_bayar, 0, ',', '.') ?></td>
+</tr>
     </table>
 
     <div class="thanks">
