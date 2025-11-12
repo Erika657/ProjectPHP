@@ -140,6 +140,7 @@ $username = $_SESSION["username"];
       <h1>Selamat Datang di Dashboard<br>POLGAN MART 🎉</h1>
       <p>Hai <b><?= htmlspecialchars($username); ?></b>, senang bertemu kembali.</p>
       <p>Gunakan menu di atas untuk melanjutkan aktivitas Anda.</p>
+          <a href="penjualan.php" class="btn-link">📦 Lihat Daftar Produk</a>
     </div>
   </main>
 
