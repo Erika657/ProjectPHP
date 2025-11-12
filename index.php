@@ -1,7 +1,7 @@
 <?php
 session_start();
 $error = "";
-$valid_username = "admin";
+$valid_username = "ERIKA";
 $valid_password = "1234";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -54,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       text-align: center;
       animation: fadeIn 0.8s ease;
     }
-<<<<<<< HEAD
-=======
     .error {
   background-color: #fee2e2;
   color: #b91c1c;
@@ -69,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   animation: fadeIn 0.3s ease-in;
 }
 
->>>>>>> bf578e7 (Proses Login dan Session)
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
@@ -178,14 +175,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="logo">PM</div>
     <h2>POLGAN MART</h2>
 
-<<<<<<< HEAD
-=======
    <?php if (!empty(trim($error))): ?>
   <div class="error"><?= $error ?></div>
 <?php endif; ?>
 
-
->>>>>>> bf578e7 (Proses Login dan Session)
     <form method="post" action="">
       <div class="input-group">
         <label for="username">👤 Username</label>
