@@ -1,5 +1,4 @@
 <?php
-// ✅ Commit 5 – Dashboard Penjualan
 session_start();
 if (!isset($_SESSION["username"])) {
     header("Location: index.php");
@@ -45,8 +44,9 @@ foreach ($kode_barang as $index => $kode) {
     }
 
     header {
+      position: relative;
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.2);
@@ -56,7 +56,26 @@ foreach ($kode_barang as $index => $kode) {
       color: #e3f2fd;
       text-shadow: 0 0 6px rgba(255,255,255,0.3);
     }
-
+    .logo {
+  position: absolute;
+  top: 18px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #90caf9, #e3f2fd);
+  color: #0d47a1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(187, 222, 251, 0.6);
+  text-shadow: 0 0 4px rgba(255,255,255,0.3);
+}
+.title {
+  margin-left: 70px;
+}
     table {
       width: 70%;
       margin: 40px auto;
@@ -88,7 +107,17 @@ foreach ($kode_barang as $index => $kode) {
       background: rgba(255, 255, 255, 0.25);
       transition: 0.3s;
     }
-
+  .total-box {
+    width: fit-content;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #43a047, #66bb6a); /* warna hijau soft */
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+  }
     .back-btn {
       display: block;
       width: fit-content;
@@ -120,7 +149,11 @@ foreach ($kode_barang as $index => $kode) {
   </style>
 </head>
 <body>
-  <header>-- POLGAN MART --</header>
+  <header>
+  <div class="logo">PM</div>
+  <div class="title">-- POLGAN MART --</div>
+</header>
+
 
   <table>
     <tr>
@@ -131,13 +164,13 @@ foreach ($kode_barang as $index => $kode) {
       <th>Total (Rp)</th>
     </tr>
 
-    <?php foreach ($kode_barang as $index => $kode): ?>
+    <?php foreach ($kode_barang as $i => $kode): ?>
   <tr>
     <td><?= $kode ?></td>
-    <td><?= $nama_barang[$index] ?></td>
-    <td><?= number_format($harga_barang[$index], 0, ',', '.') ?></td>
-    <td><?= $jumlah[$index] ?></td>
-    <td><?= number_format($total[$index], 0, ',', '.') ?></td>
+    <td><?= $nama_barang[$i] ?></td>
+    <td><?= number_format($harga_barang[$i], 0, ',', '.') ?></td>
+    <td><?= $jumlah[$i] ?></td>
+    <td><?= number_format($total[$i], 0, ',', '.') ?></td>
   </tr>
 <?php endforeach; ?>
 
@@ -146,6 +179,10 @@ foreach ($kode_barang as $index => $kode) {
       <td><?= number_format($grandtotal, 0, ',', '.') ?></td>
     </tr>
   </table>
+    🆕 <div class="total-box">
+    💰 Total Belanja: Rp <?= number_format($grandtotal, 0, ',', '.') ?>
+  </div>
+<a href="struk.php" class="back-btn">🧾 Lihat Struk Belanja</a>
 
   <a href="dashboard.php" class="back-btn">⬅ Kembali ke Dashboard</a>
 
