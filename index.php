@@ -1,6 +1,22 @@
 <?php
-// Commit 2 – Mendesain Halaman Login (Royal Blue & Silver Theme)
-// Tampilan elegan dan profesional ala corporate modern.
+session_start();
+$error = "";
+$valid_username = "admin";
+$valid_password = "1234";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    if ($username === $valid_username && $password === $valid_password) {
+        $_SESSION["username"] = $username;
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        // ❌ Kalau salah, baru isi error
+        $error = "Username atau password salah!";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +54,22 @@
       text-align: center;
       animation: fadeIn 0.8s ease;
     }
+<<<<<<< HEAD
+=======
+    .error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.3;
+  animation: fadeIn 0.3s ease-in;
+}
+
+>>>>>>> bf578e7 (Proses Login dan Session)
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
@@ -146,6 +178,14 @@
     <div class="logo">PM</div>
     <h2>POLGAN MART</h2>
 
+<<<<<<< HEAD
+=======
+   <?php if (!empty(trim($error))): ?>
+  <div class="error"><?= $error ?></div>
+<?php endif; ?>
+
+
+>>>>>>> bf578e7 (Proses Login dan Session)
     <form method="post" action="">
       <div class="input-group">
         <label for="username">👤 Username</label>
