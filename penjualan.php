@@ -10,7 +10,20 @@ if (!isset($_SESSION["username"])) {
 $kode_barang = ["AKD01", "AKD02", "AKD03", "AKD04", "AKD05"];
 $nama_barang = ["Keyboard Wireless","Mouse Bluetooth","Headset Bluetooth","Webcam HD 1080p","USB Hub 4 Port"];
 $harga_barang = [550000, 350000, 750000, 600000, 250000];
+
+$beli = [];
+$jumlah = [];
+$total = [];
+$grandtotal = 0;
+
+for ($i = 0; $i < count($kode_barang); $i++) {
+    $beli[$i] = rand(0, 1);            // menentukan beli atau tidak
+    $jumlah[$i] = $beli[$i] ? rand(1, 5) : 0;  // jumlah random
+    $total[$i] = $jumlah[$i] * $harga_barang[$i]; // total harga barang
+    $grandtotal += $total[$i];         // akumulasi total
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -113,17 +126,25 @@ $harga_barang = [550000, 350000, 750000, 600000, 250000];
       <th>Kode Barang</th>
       <th>Nama Barang</th>
       <th>Harga (Rp)</th>
+      <th>Jumlah Beli</th>
+      <th>Total (Rp)</th>
     </tr>
 
     <?php
-    for ($i = 0; $i < count($kode_barang); $i++) {
-        echo "<tr>";
-        echo "<td>{$kode_barang[$i]}</td>";
-        echo "<td>{$nama_barang[$i]}</td>";
-        echo "<td>" . number_format($harga_barang[$i], 0, ',', '.') . "</td>";
-        echo "</tr>";
-    }
-    ?>
+    for ($i = 0; $i < count($kode_barang); $i++): ?>
+        <tr>
+        <td><?= $kode_barang[$i]?></td>
+        <td><?= $nama_barang[$i]?></td>
+        <td><?=number_format($harga_barang[$i], 0, ',', '.') ?></td>
+        <td><?= $jumlah[$i] ?></td>
+        <td><?= number_format($total[$i], 0, ',', '.') ?></td>
+        </tr>
+
+        <?php endfor; ?>
+    <tr class="grandtotal">
+      <td colspan="4">💰 Grand Total</td>
+      <td><?= number_format($grandtotal, 0, ',', '.') ?></td>
+    </tr>
   </table>
 
   <a href="dashboard.php" class="back-btn">⬅ Kembali ke Dashboard</a>
