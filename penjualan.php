@@ -16,12 +16,13 @@ $jumlah = [];
 $total = [];
 $grandtotal = 0;
 
-for ($i = 0; $i < count($kode_barang); $i++) {
-    $beli[$i] = rand(0, 1);            // menentukan beli atau tidak
-    $jumlah[$i] = $beli[$i] ? rand(1, 5) : 0;  // jumlah random
-    $total[$i] = $jumlah[$i] * $harga_barang[$i]; // total harga barang
-    $grandtotal += $total[$i];         // akumulasi total
+foreach ($kode_barang as $index => $kode) {
+    $beli[$index] = rand(0, 1);
+    $jumlah[$index] = $beli[$index] ? rand(1, 5) : 0;
+    $total[$index] = $jumlah[$index] * $harga_barang[$index];
+    $grandtotal += $total[$index];
 }
+
 ?>
 
 
@@ -130,17 +131,16 @@ for ($i = 0; $i < count($kode_barang); $i++) {
       <th>Total (Rp)</th>
     </tr>
 
-    <?php
-    for ($i = 0; $i < count($kode_barang); $i++): ?>
-        <tr>
-        <td><?= $kode_barang[$i]?></td>
-        <td><?= $nama_barang[$i]?></td>
-        <td><?=number_format($harga_barang[$i], 0, ',', '.') ?></td>
-        <td><?= $jumlah[$i] ?></td>
-        <td><?= number_format($total[$i], 0, ',', '.') ?></td>
-        </tr>
+    <?php foreach ($kode_barang as $index => $kode): ?>
+  <tr>
+    <td><?= $kode ?></td>
+    <td><?= $nama_barang[$index] ?></td>
+    <td><?= number_format($harga_barang[$index], 0, ',', '.') ?></td>
+    <td><?= $jumlah[$index] ?></td>
+    <td><?= number_format($total[$index], 0, ',', '.') ?></td>
+  </tr>
+<?php endforeach; ?>
 
-        <?php endfor; ?>
     <tr class="grandtotal">
       <td colspan="4">💰 Grand Total</td>
       <td><?= number_format($grandtotal, 0, ',', '.') ?></td>
